@@ -1,4 +1,5 @@
 #include "point.h"
+#include <math.h>
 
 /* This file contains definitions for spherical point functions. */
 
@@ -12,6 +13,8 @@ PG_FUNCTION_INFO_V1(spherepoint_y);
 PG_FUNCTION_INFO_V1(spherepoint_z);
 PG_FUNCTION_INFO_V1(spherepoint_xyz);
 PG_FUNCTION_INFO_V1(spherepoint_equal);
+PG_FUNCTION_INFO_V1(spoint_to_array);
+PG_FUNCTION_INFO_V1(spoint_to_deg_array);
 
 bool
 spoint_eq(const SPoint *p1, const SPoint *p2)
@@ -262,4 +265,38 @@ spherepoint_equal(PG_FUNCTION_ARGS)
 	SPoint	   *p2 = (SPoint *) PG_GETARG_POINTER(1);
 
 	PG_RETURN_BOOL(spoint_eq(p1, p2));
+}
+
+Datum
+spoint_to_array(PG_FUNCTION_ARGS)
+{
+	SPoint	   *p = (SPoint *) PG_GETARG_POINTER(0);
+	Datum		dret[2];
+	ArrayType  *result;
+
+	dret[0] = Float8GetDatumFast(p->lng);
+	dret[1] = Float8GetDatumFast(p->lat);
+#ifdef USE_FLOAT8_BYVAL
+	result = construct_array(dret, 2, FLOAT8OID, sizeof(float8), true, 'd');
+#else
+	result = construct_array(dret, 2, FLOAT8OID, sizeof(float8), false, 'd');
+#endif
+	PG_RETURN_ARRAYTYPE_P(result);
+}
+
+Datum
+spoint_to_deg_array(PG_FUNCTION_ARGS)
+{
+	SPoint	   *p = (SPoint *) PG_GETARG_POINTER(0);
+	Datum		dret[2];
+	ArrayType  *result;
+
+	dret[0] = Float8GetDatumFast(p->lng * (180.0 / M_PI));
+	dret[1] = Float8GetDatumFast(p->lat * (180.0 / M_PI));
+#ifdef USE_FLOAT8_BYVAL
+	result = construct_array(dret, 2, FLOAT8OID, sizeof(float8), true, 'd');
+#else
+	result = construct_array(dret, 2, FLOAT8OID, sizeof(float8), false, 'd');
+#endif
+	PG_RETURN_ARRAYTYPE_P(result);
 }

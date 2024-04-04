@@ -90,4 +90,14 @@ Datum	spherepoint_xyz(PG_FUNCTION_ARGS);
  */
 Datum	spherepoint_equal(PG_FUNCTION_ARGS);
 
+/*
+ * Converts a point to an array
+ */
+Datum	spoint_to_array(PG_FUNCTION_ARGS);
+
+/*
+ * Converts a point to an array in degrees
+ */
+Datum	spoint_to_deg_array(PG_FUNCTION_ARGS);
+
 #endif

@@ -84,6 +84,17 @@ CREATE FUNCTION z(spoint)
 COMMENT ON FUNCTION z(spoint) IS
   'cartesian z value of spherical point';
 
+CREATE FUNCTION spoint_to_array(spoint)
+   RETURNS double precision[2]
+   AS 'MODULE_PATHNAME', 'spoint_to_array'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+CREATE FUNCTION spoint_to_deg_array(spoint)
+   RETURNS double precision[2]
+   AS 'MODULE_PATHNAME', 'spoint_to_deg_array'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
 
 -- ***************************
 --
