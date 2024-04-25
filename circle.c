@@ -26,6 +26,8 @@ PG_FUNCTION_INFO_V1(spherecircle_area);
 PG_FUNCTION_INFO_V1(spherecircle_circ);
 PG_FUNCTION_INFO_V1(spheretrans_circle);
 PG_FUNCTION_INFO_V1(spheretrans_circle_inverse);
+PG_FUNCTION_INFO_V1(scircle_to_array);
+PG_FUNCTION_INFO_V1(scircle_to_array_deg);
 
 
 bool
@@ -409,4 +411,40 @@ spheretrans_circle_inverse(PG_FUNCTION_ARGS)
 	ret = DirectFunctionCall2(spheretrans_circle,
 							  sc, PointerGetDatum(&tmp));
 	PG_RETURN_DATUM(ret);
+}
+
+Datum
+scircle_to_array(PG_FUNCTION_ARGS)
+{
+	SCIRCLE	   *sc = (SCIRCLE *) PG_GETARG_POINTER(0);
+	Datum		dret[3];
+	ArrayType  *result;
+
+	dret[0] = Float8GetDatumFast(sc->center.lng);
+	dret[1] = Float8GetDatumFast(sc->center.lat);
+	dret[2] = Float8GetDatumFast(sc->radius);
+#ifdef USE_FLOAT8_BYVAL
+	result = construct_array(dret, 3, FLOAT8OID, sizeof(float8), true, 'd');
+#else
+	result = construct_array(dret, 3, FLOAT8OID, sizeof(float8), false, 'd');
+#endif
+	PG_RETURN_ARRAYTYPE_P(result);
+}
+
+Datum
+scircle_to_array_deg(PG_FUNCTION_ARGS)
+{
+	SCIRCLE	   *sc = (SCIRCLE *) PG_GETARG_POINTER(0);
+	Datum		dret[3];
+	ArrayType  *result;
+
+	dret[0] = Float8GetDatumFast(sc->center.lng * RADIANS);
+	dret[1] = Float8GetDatumFast(sc->center.lat * RADIANS);
+	dret[2] = Float8GetDatumFast(sc->radius * RADIANS);
+#ifdef USE_FLOAT8_BYVAL
+	result = construct_array(dret, 3, FLOAT8OID, sizeof(float8), true, 'd');
+#else
+	result = construct_array(dret, 3, FLOAT8OID, sizeof(float8), false, 'd');
+#endif
+	PG_RETURN_ARRAYTYPE_P(result);
 }

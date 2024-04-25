@@ -55,6 +55,8 @@ PG_FUNCTION_INFO_V1(spheretrans_poly);
 PG_FUNCTION_INFO_V1(spheretrans_poly_inverse);
 PG_FUNCTION_INFO_V1(spherepoly_add_point);
 PG_FUNCTION_INFO_V1(spherepoly_add_points_finalize);
+PG_FUNCTION_INFO_V1(spoly_to_array);
+PG_FUNCTION_INFO_V1(spoly_to_array_deg);
 
 
  /*
@@ -824,14 +826,14 @@ spherepoly_in(PG_FUNCTION_ARGS)
 	nelem = get_path_count();
 	if (nelem > 2)
 	{
-		SPoint		*arr=malloc(sizeof(SPoint)*nelem);
+		SPoint		*arr=palloc(sizeof(SPoint)*nelem);
 
 		for (i = 0; i < nelem; i++)
 		{
 			get_path_elem(i, &arr[i].lng, &arr[i].lat);
 		}
 		poly = spherepoly_from_array(&arr[0], nelem);
-		free(arr);
+		pfree(arr);
 	}
 	else
 	{
@@ -893,7 +895,7 @@ spherepoly_area(PG_FUNCTION_ARGS)
 {
 	SPOLY	   *poly = PG_GETARG_SPOLY(0);
 	int32		i;
-	SPoint		*s=malloc(sizeof(SPoint)*poly->npts + 2);
+	SPoint		*s=palloc(sizeof(SPoint)*poly->npts + 2);
 	SPoint		stmp[2];
 	SEuler		se;
 	float8		sum = 0.0;
@@ -936,7 +938,7 @@ spherepoly_area(PG_FUNCTION_ARGS)
 	{
 		sum = 0.0;
 	}
-        free(s);
+	pfree(s);
 	PG_RETURN_FLOAT8(sum);
 }
 
@@ -1344,6 +1346,7 @@ spheretrans_poly_inverse(PG_FUNCTION_ARGS)
 	PG_RETURN_DATUM(ret);
 }
 
+
 Datum
 spherepoly_add_point(PG_FUNCTION_ARGS)
 {
@@ -1425,3 +1428,46 @@ spherepoly_add_points_finalize(PG_FUNCTION_ARGS)
 	}
 	PG_RETURN_POINTER(poly);
 }
+
+Datum	spoly_to_array(PG_FUNCTION_ARGS){
+
+	SPOLY		*poly = (SPOLY *) PG_GETARG_SPOLY(0);
+	Datum		*dret = NULL;
+	ArrayType	*result;
+	int32		array_length = poly->npts * 2;
+
+	dret = (Datum *) palloc(sizeof(Datum) * array_length);
+	for (int i=0;i<(poly->npts);i++){
+		dret[2*i]   = Float8GetDatumFast(poly->p[i].lng);
+		dret[2*i+1] = Float8GetDatumFast(poly->p[i].lat);
+	}
+#ifdef USE_FLOAT8_BYVAL
+	result = construct_array(dret, array_length, FLOAT8OID, sizeof(float8), true, 'd');
+#else
+	result = construct_array(dret, array_length, FLOAT8OID, sizeof(float8), false, 'd');
+#endif
+	pfree(dret);
+	PG_RETURN_ARRAYTYPE_P(result);
+};
+
+Datum	spoly_to_array_deg(PG_FUNCTION_ARGS){
+
+	SPOLY		*poly = (SPOLY *) PG_GETARG_SPOLY(0);
+	Datum		*dret = NULL;
+	ArrayType	*result;
+	int32		array_length = poly->npts * 2;
+
+	dret = (Datum *) palloc(sizeof(Datum) * array_length);
+	for (int i=0;i<(poly->npts);i++){
+		dret[2*i]   = Float8GetDatumFast(poly->p[i].lng * RADIANS);
+		dret[2*i+1] = Float8GetDatumFast(poly->p[i].lat * RADIANS);
+	}
+#ifdef USE_FLOAT8_BYVAL
+	result = construct_array(dret, array_length, FLOAT8OID, sizeof(float8), true, 'd');
+#else
+	result = construct_array(dret, array_length, FLOAT8OID, sizeof(float8), false, 'd');
+#endif
+	pfree(dret);
+	PG_RETURN_ARRAYTYPE_P(result);
+};
+

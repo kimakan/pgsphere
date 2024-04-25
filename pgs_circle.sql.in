@@ -433,3 +433,23 @@ CREATE OPERATOR - (
 
 COMMENT ON OPERATOR - (scircle, strans) IS
   'transforms inverse a spherical circle ';
+
+
+CREATE FUNCTION scircle_to_array(scircle)
+   RETURNS double precision[3]
+   AS 'MODULE_PATHNAME', 'scircle_to_array'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION scircle_to_array(scircle) IS
+  'returns the array [lng, lat, radius] from spherical circle';
+
+CREATE FUNCTION scircle_to_array_deg(scircle)
+   RETURNS double precision[3]
+   AS 'MODULE_PATHNAME', 'scircle_to_array_deg'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION scircle_to_array_deg(scircle) IS
+  'returns the array [lng, lat, radius] in degrees from spherical circle';
+

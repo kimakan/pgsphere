@@ -342,4 +342,14 @@ Datum	spherepoly_add_point(PG_FUNCTION_ARGS);
  */
 Datum	spherepoly_add_points_finalize(PG_FUNCTION_ARGS);
 
+/*
+ * Converts a polygon to an array
+ */
+Datum	spoly_to_array(PG_FUNCTION_ARGS);
+
+/*
+ * Converts a polygon to an array in degrees
+ */
+Datum	spoly_to_array_deg(PG_FUNCTION_ARGS);
+
 #endif

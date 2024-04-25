@@ -90,11 +90,17 @@ CREATE FUNCTION spoint_to_array(spoint)
    LANGUAGE 'c'
    IMMUTABLE STRICT;
 
-CREATE FUNCTION spoint_to_deg_array(spoint)
+COMMENT ON FUNCTION spoint_to_array(spoint) IS
+  'returns the array [lng, lat] from spherical point';
+
+CREATE FUNCTION spoint_to_array_deg(spoint)
    RETURNS double precision[2]
-   AS 'MODULE_PATHNAME', 'spoint_to_deg_array'
+   AS 'MODULE_PATHNAME', 'spoint_to_array_deg'
    LANGUAGE 'c'
    IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION spoint_to_array_deg(spoint) IS
+  'returns the array [lng, lat] in degrees from spherical spoint';
 
 -- ***************************
 --

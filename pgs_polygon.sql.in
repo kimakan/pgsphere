@@ -943,3 +943,24 @@ CREATE AGGREGATE spoly (
     stype     = spoly,
     finalfunc = spoly_add_points_fin_aggr
 );
+
+
+CREATE FUNCTION spoly_to_array(spoly)
+   RETURNS double precision[]
+   AS 'MODULE_PATHNAME', 'spoly_to_array'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION spoly_to_array(spoly) IS
+  'returns the array [lng1, lat1, lng2, lat2, ...] from spherical polygon';
+
+
+CREATE FUNCTION spoly_to_array_deg(spoly)
+   RETURNS double precision[]
+   AS 'MODULE_PATHNAME', 'spoly_to_array_deg'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION spoly_to_array_deg(spoly) IS
+  'returns the array [lng1, lat1, lng2, lat2, ...] in degrees from spherical polygon';
+

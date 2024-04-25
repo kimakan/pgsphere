@@ -152,4 +152,14 @@ Datum	spheretrans_circle(PG_FUNCTION_ARGS);
  */
 Datum	spheretrans_circle_inverse(PG_FUNCTION_ARGS);
 
+/*
+ * Converts a circle to an array
+ */
+Datum	scircle_to_array(PG_FUNCTION_ARGS);
+
+/*
+ * Converts a circle to an array in degrees
+ */
+Datum	scircle_to_array_deg(PG_FUNCTION_ARGS);
+
 #endif

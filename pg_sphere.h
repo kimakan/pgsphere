@@ -41,6 +41,9 @@
 
 #define Sqr(a)	 	( (a) * (a) )		/* square function as macro */
 
+/* Return the absolute value of the argument. */
+#define Abs(x)		((x) >= 0 ? (x) : -(x))
+
 #include "postgres.h"
 #include "fmgr.h"
 #include "utils/geo_decls.h"
