@@ -4,7 +4,9 @@ useful functions and operators.
 
 
 NOTICE:
-     This version will work only with postgresql version 9.1 and above.
+    This version has some extended functionality in comparison to the release 
+    version. It was tested only with postgresql version 16, although it might 
+    work with older versions as well.
 
 INSTALLATION:
 
