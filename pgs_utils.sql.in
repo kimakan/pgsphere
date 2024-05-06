@@ -1,0 +1,25 @@
+-- **************************
+--
+-- util functions
+--
+-- **************************
+
+
+CREATE FUNCTION square_degrees(FLOAT8)
+   RETURNS FLOAT8
+   AS 'MODULE_PATHNAME', 'square_degrees'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION square_degrees(FLOAT8) IS
+  'Converts steradians to square degrees';
+
+CREATE FUNCTION steradians(FLOAT8)
+   RETURNS FLOAT8
+   AS 'MODULE_PATHNAME', 'steradians'
+   LANGUAGE 'c'
+   IMMUTABLE STRICT;
+
+COMMENT ON FUNCTION steradians(FLOAT8) IS
+  'Converts square_degrees to steradians';
+
