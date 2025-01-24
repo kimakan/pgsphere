@@ -204,7 +204,7 @@ do \
 		{ \
 			int32 *k = (int32 *) palloc(KEYSIZE); \
 			if (detoast) \
-				genkey(k, (type *) DatumGetPointer(PG_DETOAST_DATUM(entry->key))); \
+				genkey(k, (type *) PG_DETOAST_DATUM(entry->key)); \
 			else \
 				genkey(k, (type *) DatumGetPointer(entry->key)); \
 			gistentryinit(*retval, PointerGetDatum(k), \
