@@ -203,10 +203,12 @@ do \
 		if (DatumGetPointer(entry->key) != NULL) \
 		{ \
 			int32 *k = (int32 *) palloc(KEYSIZE); \
+      type *val; \
 			if (detoast) \
-				genkey(k, (type *) DatumGetPointer(PG_DETOAST_DATUM(entry->key))); \
+				val = (type *) PG_DETOAST_DATUM(entry->key); \
 			else \
-				genkey(k, (type *) DatumGetPointer(entry->key)); \
+				val = (type *) DatumGetPointer(entry->key)); \
+      genkey(k, val); \
 			gistentryinit(*retval, PointerGetDatum(k), \
 				entry->rel, entry->page, \
 				entry->offset, false); \
