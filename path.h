@@ -34,9 +34,12 @@ typedef struct
 #define PGS_ELLIPSE_CONT_PATH  1	/* ellipse contains path */
 #define PGS_ELLIPSE_PATH_OVER  2	/* ellipse overlaps path */
 
-
+/*
 #define PG_GETARG_SPATH(arg) \
 	( (SPATH *) DatumGetPointer(PG_DETOAST_DATUM(PG_GETARG_DATUM(arg))) )
+*/
+#define PG_GETARG_SPATH(arg) \
+	( (SPATH *) PG_GETARG_VARLENA_P(arg))
 
 /*
  * Checks whether two paths are equal.

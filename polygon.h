@@ -41,8 +41,13 @@ typedef struct
 #define PGS_POLY_OVER		  2		/* polygons overlap */
 
 
+/*
 #define PG_GETARG_SPOLY( arg ) \
 	( (SPOLY  *) DatumGetPointer(PG_DETOAST_DATUM(PG_GETARG_DATUM(arg))) )
+*/
+
+#define PG_GETARG_SPOLY( arg ) \
+	( (SPOLY  *) PG_GETARG_VARLENA_P(arg))
 
 /*
  * Checks whether two polygons are equal.
