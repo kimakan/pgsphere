@@ -207,7 +207,7 @@ do \
 			if (detoast) \
 				val = (type *) PG_DETOAST_DATUM(entry->key); \
 			else \
-				val = (type *) DatumGetPointer(entry->key)); \
+				val = (type *) DatumGetPointer(entry->key); \
       genkey(k, val); \
 			gistentryinit(*retval, PointerGetDatum(k), \
 				entry->rel, entry->page, \
