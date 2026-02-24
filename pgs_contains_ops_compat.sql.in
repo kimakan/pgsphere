@@ -20,7 +20,6 @@ CREATE OPERATOR @ (
    LEFTARG    = scircle,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contained_by_circle,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -32,8 +31,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_circle_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -44,8 +41,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = scircle,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contained_by_circle_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -70,7 +65,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoint,
    RIGHTARG   = scircle,
    PROCEDURE  = spoint_contained_by_circle,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -82,8 +76,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = spoint,
    PROCEDURE  = spoint_contained_by_circle_com_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -94,8 +86,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoint,
    RIGHTARG   = scircle,
    PROCEDURE  = spoint_contained_by_circle_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -120,7 +110,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoly,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_polygon_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -132,8 +121,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_polygon_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -144,8 +131,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoly,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_polygon_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -170,7 +155,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoint,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_point_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -182,8 +166,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = spoint,
    PROCEDURE  = spoly_contains_point_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -194,8 +176,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoint,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_point_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -221,7 +201,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoly,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_polygon_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -233,8 +212,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = spoly,
    PROCEDURE  = scircle_contains_polygon_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -245,8 +222,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoly,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_polygon_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -269,7 +244,6 @@ CREATE OPERATOR @ (
    LEFTARG    = scircle,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_circle_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -281,8 +255,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = scircle,
    PROCEDURE  = spoly_contains_circle_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -293,8 +265,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = scircle,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_circle_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -320,7 +290,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sbox,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_box_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -332,8 +301,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_box_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -344,8 +311,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sbox,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_box_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -370,7 +335,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoint,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_cont_point_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -382,8 +346,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = spoint,
    PROCEDURE  = sbox_cont_point_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -394,8 +356,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoint,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_cont_point_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -420,7 +380,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sbox,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_box_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -432,8 +391,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = sbox,
    PROCEDURE  = scircle_contains_box_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -444,8 +401,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sbox,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_box_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -468,7 +423,6 @@ CREATE OPERATOR @ (
    LEFTARG    = scircle,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_circle_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -480,8 +434,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = scircle,
    PROCEDURE  = sbox_contains_circle_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -492,8 +444,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = scircle,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_circle_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -519,7 +469,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sbox,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_box_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -531,8 +480,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = sbox,
    PROCEDURE  = spoly_contains_box_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -543,8 +490,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sbox,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_box_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -567,7 +512,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoly,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_poly_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -579,8 +523,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = spoly,
    PROCEDURE  = sbox_contains_poly_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -591,8 +533,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoly,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_poly_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -617,7 +557,6 @@ CREATE OPERATOR ~ (
    LEFTARG    = sline,
    RIGHTARG   = spoint,
    PROCEDURE  = sline_contains_point,
-   COMMUTATOR = '@',
    NEGATOR    = '!~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -629,8 +568,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sline,
    RIGHTARG   = spoint,
    PROCEDURE  = sline_contains_point_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -641,8 +578,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoint,
    RIGHTARG   = sline,
    PROCEDURE  = sline_contains_point_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -665,7 +600,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sline,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_line_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -677,8 +611,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = sline,
    PROCEDURE  = scircle_contains_line_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -689,8 +621,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sline,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_line_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -713,7 +643,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sline,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_line_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -725,8 +654,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = sline,
    PROCEDURE  = spoly_contains_line,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -737,8 +664,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sline,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_line_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -763,7 +688,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sellipse,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_ellipse_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -775,8 +699,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_ellipse_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -787,8 +709,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sellipse,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_ellipse_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -812,7 +732,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoint,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_point_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -824,8 +743,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = spoint,
    PROCEDURE  = sellipse_contains_point_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -836,8 +753,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoint,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_point_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -873,7 +788,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = sellipse,
    PROCEDURE  = sbox_contains_ellipse_neg,
-   COMMUTATOR = '!@',
    NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -885,8 +799,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sellipse,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_ellipse_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -897,8 +809,6 @@ CREATE OPERATOR ~ (
    LEFTARG    = sellipse,
    RIGHTARG   = sbox,
    PROCEDURE  = sellipse_contains_box,
-   COMMUTATOR = '@',
-   NEGATOR    = '!~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -909,7 +819,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sbox,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_box_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -921,8 +830,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = sbox,
    PROCEDURE  = sellipse_contains_box_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -933,8 +840,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sbox,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_box_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -957,7 +862,6 @@ CREATE OPERATOR @ (
    LEFTARG    = scircle,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_circle_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -969,8 +873,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = scircle,
    PROCEDURE  = sellipse_contains_circle_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -981,8 +883,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = scircle,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_circle_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1005,7 +905,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sellipse,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_ellipse_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1017,8 +916,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = sellipse,
    PROCEDURE  = scircle_contains_ellipse_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1030,8 +927,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sellipse,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_ellipse_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1055,7 +950,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sline,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_line_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1067,8 +961,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = sline,
    PROCEDURE  = sellipse_contains_line_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1079,8 +971,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sline,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_line_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1104,7 +994,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sellipse,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_ellipse_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1116,8 +1005,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = sellipse,
    PROCEDURE  = spoly_contains_ellipse_neg,
-   COMMUTATOR = '!>@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1128,8 +1015,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sellipse,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_ellipse_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1152,7 +1037,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoly,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_polygon_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1164,8 +1048,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = spoly,
    PROCEDURE  = sellipse_contains_polygon_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1176,8 +1058,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoly,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_polygon_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1200,7 +1080,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spoint,
    RIGHTARG   = spath,
    PROCEDURE  = spath_contains_point_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1212,8 +1091,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spath,
    RIGHTARG   = spoint,
    PROCEDURE  = spath_contains_point_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1224,8 +1101,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spoint,
    RIGHTARG   = spath,
    PROCEDURE  = spath_contains_point_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1248,7 +1123,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spath,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_path_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1260,8 +1134,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = spath,
    PROCEDURE  = sbox_contains_path_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1272,8 +1144,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spath,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_path_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1297,7 +1167,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spath,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_path_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1309,8 +1178,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = scircle,
    RIGHTARG   = spath,
    PROCEDURE  = scircle_contains_path_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1321,8 +1188,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spath,
    RIGHTARG   = scircle,
    PROCEDURE  = scircle_contains_path_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1345,7 +1210,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spath,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_path_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1357,8 +1221,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sellipse,
    RIGHTARG   = spath,
    PROCEDURE  = sellipse_contains_path_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1369,8 +1231,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spath,
    RIGHTARG   = sellipse,
    PROCEDURE  = sellipse_contains_path_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1393,7 +1253,6 @@ CREATE OPERATOR @ (
    LEFTARG    = spath,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_path_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1405,8 +1264,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = spath,
    PROCEDURE  = spoly_contains_path_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1417,8 +1274,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = spath,
    RIGHTARG   = spoly,
    PROCEDURE  = spoly_contains_path_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1441,7 +1296,6 @@ CREATE OPERATOR @ (
    LEFTARG    = sline,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_line_com,
-   COMMUTATOR = '~',
    NEGATOR    = '!@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
@@ -1453,8 +1307,6 @@ CREATE OPERATOR !~ (
    LEFTARG    = sbox,
    RIGHTARG   = sline,
    PROCEDURE  = sbox_contains_line_neg,
-   COMMUTATOR = '!@',
-   NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
@@ -1465,8 +1317,6 @@ CREATE OPERATOR !@ (
    LEFTARG    = sline,
    RIGHTARG   = sbox,
    PROCEDURE  = sbox_contains_line_com_neg,
-   COMMUTATOR = '!~',
-   NEGATOR    = '@',
    RESTRICT   = contsel,
    JOIN       = contjoinsel
 );
